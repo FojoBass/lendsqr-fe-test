@@ -1,0 +1,137 @@
+@use 'config' as *;
+
+#login {
+  height: 100vh;
+  background-color: red;
+
+  @include media(min, $mid) {
+    @include flex(flex-start, flex-start);
+  }
+
+  .center {
+    width: 100%;
+    padding-inline: 15%;
+    position: relative;
+    height: 100%;
+    @include flex(center, center);
+  }
+
+  .left_side {
+    background-color: $clr_bg_main;
+    height: 100%;
+
+    flex-basis: 50%;
+    @include media(max, $mid) {
+      display: none;
+    }
+
+    .logo {
+      @include position(absolute, left, top, 15%, 50px);
+      display: block;
+    }
+  }
+
+  .right_side {
+    flex-basis: 50%;
+    height: 100%;
+    background-color: $clr_bg_sub;
+
+    .center {
+      flex-direction: column;
+      @include media(max, $mid) {
+        padding-inline: 10%;
+      }
+
+      header {
+        width: 100%;
+        margin-bottom: 40px;
+
+        h1 {
+          font-size: 4rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+
+      form {
+        @include flex(flex-start, flex-start, column);
+        gap: 20px;
+        width: 100%;
+
+        .form_opt {
+          width: 100%;
+          position: relative;
+
+          &.pword {
+            button {
+              @include position(absolute, right, top, 15px, 50%);
+              @include uniTranslate(Y, -50%);
+              color: $clr_acc;
+              text-transform: uppercase;
+              letter-spacing: 0.1rem;
+              font-size: 1.2rem;
+            }
+          }
+
+          input {
+            width: 100%;
+            position: relative;
+            border: 2px solid $clr_brd;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            letter-spacing: 0.1rem;
+
+            &::placeholder {
+              color: inherit;
+              opacity: 0.5;
+            }
+          }
+
+          .err_msg {
+            background-color: lighten($clr_danger, 45);
+            font-size: 1.1rem;
+            letter-spacing: 0.1rem;
+            color: $clr_danger;
+            transition: all ease $trans_mid;
+            overflow: hidden;
+            height: 0;
+
+            p {
+              padding: 5px 15px;
+            }
+          }
+        }
+
+        .forgot {
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          color: $clr_acc;
+          letter-spacing: 0.1rem;
+          font-weight: bold;
+        }
+
+        .login_btn {
+          display: block;
+          background-color: $clr_acc;
+          width: 100%;
+          margin-top: 2rem;
+          padding-block: 10px;
+          border-radius: 10px;
+          font-size: 1.5rem;
+          color: $clr_txt_sub;
+          letter-spacing: 0.1rem;
+          text-transform: uppercase;
+          position: relative;
+          overflow: hidden;
+
+          &:disabled {
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+}

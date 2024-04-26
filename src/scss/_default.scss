@@ -1,0 +1,81 @@
+@use 'config' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Avenir', sans-serif;
+}
+
+:root {
+  font-size: 10px;
+  color: $clr_txt_main;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: all ease $trans_short;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  transition: all ease $trans_short;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+}
+
+input,
+textarea {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spinner {
+  @include overlayPos(absolute);
+  background-color: #00000052;
+  @include flex(center, center);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  z-index: -1;
+  transition: all ease $trans_mid;
+
+  &.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .icon {
+    color: $clr_txt_sub;
+    position: relative;
+    top: 3px;
+
+    svg {
+      animation: spinner 0.8s linear infinite;
+    }
+  }
+}
+
+@keyframes spinner {
+  100% {
+    rotate: 360deg;
+  }
+}

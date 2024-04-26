@@ -1,0 +1,49 @@
+@import url('https://fonts.cdnfonts.com/css/avenir');
+
+// *Variables
+$clr_txt_main: #213f7d;
+$clr_txt_sub: #fff;
+$clr_acc: #39cdcc;
+$clr_brd: #545f7d26;
+$clr_bg_main: #fbfbfb;
+$clr_bg_sub: #fff;
+$clr_danger: #ff0000;
+$trans_short: 0.1s;
+$trans_mid: 0.3s;
+$trans_long: 0.5s;
+$sml: 500px;
+$mid: 800px;
+$lrg: 1000px;
+
+// *Mixins
+@mixin biTranslate($x_val, $y_val) {
+  transform: translate($x_val, $y_val);
+}
+
+@mixin uniTranslate($axis, $val) {
+  transform: translate#{$axis }($val);
+}
+
+@mixin media($maxMin, $val) {
+  @media screen and (#{$maxMin}-width: $val) {
+    @content;
+  }
+}
+
+@mixin position($type, $x, $y, $x_val, $y_val) {
+  position: $type;
+  #{$x}: $x_val;
+  #{$y}: $y_val;
+}
+
+@mixin overlayPos($pos) {
+  position: $pos;
+  inset: 0;
+}
+
+@mixin flex($justify: flex-start, $align: flex-start, $dir: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $dir;
+}
