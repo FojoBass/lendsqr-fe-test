@@ -1,0 +1,25 @@
+@use 'config' as *;
+
+.dash_nav {
+  @include flex(flex-start, flex-start, column);
+  padding: $gen_pad_inline;
+
+  .top {
+    @include flex(space-between, center);
+    width: 100%;
+
+    .left_side {
+      @include flex(flex-start, center);
+      flex-basis: 60%;
+
+      .search_wrapper {
+        display: none;
+      }
+    }
+
+    .right_side {
+      flex-basis: 40%;
+      @include flex(flex-end, center);
+    }
+  }
+}
