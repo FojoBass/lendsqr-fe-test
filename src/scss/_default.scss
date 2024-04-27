@@ -10,6 +10,15 @@
 :root {
   font-size: 10px;
   color: $clr_txt_main;
+
+  @include media(max, $xsml) {
+    font-size: 8px;
+  }
+}
+
+::placeholder {
+  color: inherit;
+  opacity: 0.5;
 }
 
 button {

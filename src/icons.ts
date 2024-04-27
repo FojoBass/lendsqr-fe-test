@@ -21,6 +21,8 @@ import UserCog from './assets/icons/user-cog 1.svg?react';
 import UserFriends from './assets/icons/user-friends 1.svg?react';
 import Users from './assets/icons/users 1.svg?react';
 import UserTimes from './assets/icons/user-times 1.svg?react';
+import Bank from './assets/icons/bank.svg?react';
+import Transaction from './assets/icons/transaction.svg?react';
 
 export {
   Percent,
@@ -46,4 +48,6 @@ export {
   UserFriends,
   Users,
   UserTimes,
+  Bank,
+  Transaction,
 };

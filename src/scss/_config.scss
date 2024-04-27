@@ -8,13 +8,17 @@ $clr_brd: #545f7d26;
 $clr_bg_main: #fbfbfb;
 $clr_bg_sub: #fff;
 $clr_danger: #ff0000;
+$clr_pending: #e9b200;
+$clr_active: #39cd62;
+$clr_blacklist: #e4033b;
 $trans_short: 0.1s;
 $trans_mid: 0.3s;
 $trans_long: 0.5s;
+$xsml: 400px;
 $sml: 500px;
 $mid: 800px;
 $lrg: 1000px;
-$gen_pad_inline: 10px;
+$xlrg: 1200px;
 
 // *Mixins
 @mixin biTranslate($x_val, $y_val) {
@@ -47,4 +51,11 @@ $gen_pad_inline: 10px;
   justify-content: $justify;
   align-items: $align;
   flex-direction: $dir;
+}
+
+:root {
+  --gen_pad_inline: 20px;
+  @include media(min, $xlrg) {
+    --gen_pad_inline: 30px;
+  }
 }

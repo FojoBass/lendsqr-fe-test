@@ -14,7 +14,7 @@ interface AppContextInt {
 
 const AppContext = createContext<AppContextInt>({});
 
-export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isAuthed, setIsAuthed] = useState(
@@ -27,7 +27,10 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({
     sessionStorage.setItem('lendsqr_isAuthed', JSON.stringify(isAuthed));
   }, [isAuthed]);
 
-  const sharedProps: AppContextInt = { isAuthed, setIsAuthed };
+  const sharedProps: AppContextInt = {
+    isAuthed,
+    setIsAuthed,
+  };
   return (
     <AppContext.Provider value={sharedProps}>{children}</AppContext.Provider>
   );

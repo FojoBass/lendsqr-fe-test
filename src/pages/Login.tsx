@@ -4,7 +4,8 @@ import loginImg from '../assets/images/pablo-sign-in 1.png';
 import Logo from '../assets/icons/logo.svg?react';
 import Spinner from '../components/Spinner';
 import { regex } from '../data';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../contexts/appContext';
+import { dropdownHandler } from '../helpers';
 
 interface FormErrInt {
   state: boolean;
@@ -78,10 +79,11 @@ const Login = () => {
       )!;
       const childEl = targetEl.children[0];
       childEl.textContent = err.msg;
-      targetEl.style.height = childEl.getBoundingClientRect().height + 'px';
+
+      dropdownHandler(targetEl, childEl as HTMLElement, true);
 
       const timer = setTimeout(() => {
-        targetEl.style.height = '0';
+        dropdownHandler(targetEl, childEl as HTMLElement, false);
       }, 3000);
 
       const timer2 = setTimeout(() => {
@@ -94,6 +96,10 @@ const Login = () => {
       };
     }
   }, [err]);
+
+  useEffect(() => {
+    document.title = 'Lendsqr | Login';
+  }, []);
 
   return (
     <section id='login'>

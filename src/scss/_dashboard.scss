@@ -1,25 +1,465 @@
 @use 'config' as *;
 
-.dash_nav {
-  @include flex(flex-start, flex-start, column);
-  padding: $gen_pad_inline;
+@mixin statusClr($clr) {
+  span {
+    background-color: color-mix(in srgb, $clr 10%, #fff);
+    color: $clr;
+  }
+}
 
-  .top {
-    @include flex(space-between, center);
-    width: 100%;
+#dashboard {
+  background-color: $clr_bg_main;
 
-    .left_side {
-      @include flex(flex-start, center);
-      flex-basis: 60%;
+  // *Dashoard navbar
+  .dash_nav {
+    @include flex(flex-start, flex-start, column);
+    padding: 10px var(--gen_pad_inline);
+    box-shadow: 0 2px 15px $clr_brd;
+    z-index: 10;
+    position: sticky;
+    background-color: $clr_bg_sub;
+    top: 0;
 
-      .search_wrapper {
+    .top {
+      @include flex(space-between, center);
+      width: 100%;
+
+      .left_side {
+        @include flex(flex-start, center);
+        flex-basis: 50%;
+        gap: 20px;
+
+        @include media(min, $xlrg) {
+          justify-content: space-between;
+          gap: unset;
+        }
+
+        @include media(max, $xsml) {
+          gap: 10px;
+        }
+
+        svg {
+          display: block;
+        }
+
+        .logo {
+          svg {
+            width: 12rem;
+
+            @include media(max, $xsml) {
+              width: 10rem;
+            }
+          }
+        }
+
+        .search {
+          color: $clr_txt_main;
+          font-size: 2.3rem;
+
+          @include media(min, $xlrg) {
+            display: none;
+          }
+        }
+
+        .search_wrapper {
+          display: none;
+
+          @include media(min, $xlrg) {
+            @include flex(flex-start, stretch);
+            flex-basis: 50%;
+            margin-right: 10%;
+
+            input {
+              border: 2px solid $clr_brd;
+              width: 100%;
+              border-radius: 5px 0 0 5px;
+              border-right: none;
+              padding: 10px 15px;
+              font-size: 1.5rem;
+            }
+
+            .search_btn {
+              background-color: $clr_acc;
+              color: $clr_txt_sub;
+              width: 50px;
+              border-radius: 0 5px 5px 0;
+              @include flex(center, center);
+              font-size: 2rem;
+
+              svg {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+
+      .right_side {
+        flex-basis: 40%;
+        @include flex(flex-end, center);
+        gap: 20px;
+        font-size: 1.5rem;
+
+        @include media(max, $xsml) {
+          gap: 10px;
+        }
+
+        .docs {
+          text-decoration: underline;
+          margin-right: 10px;
+        }
+
+        .notification_btn {
+          scale: 1.2;
+          color: $clr_txt_main;
+
+          svg {
+            display: block;
+          }
+        }
+
+        .user_info {
+          @include flex(flex-start, center);
+          gap: 5px;
+          cursor: pointer;
+
+          .img_wrapper {
+            border-radius: 50%;
+            overflow: hidden;
+            min-width: 35px;
+
+            @include media(max, $xsml) {
+              min-width: 30px;
+            }
+
+            img {
+              display: block;
+            }
+          }
+
+          p {
+            @include flex(flex-start, center);
+            gap: 5px;
+
+            svg {
+              display: block;
+            }
+          }
+        }
+
+        .menu_btn {
+          font-size: 2rem;
+          color: $clr_txt_main;
+
+          @include media(min, $xlrg) {
+            display: none;
+          }
+
+          svg {
+            top: 3px;
+            display: block;
+          }
+        }
+      }
+    }
+    .bottom {
+      @include media(min, $xlrg) {
         display: none;
+      }
+      width: 100%;
+      transition: all ease $trans_mid;
+      height: 0;
+      overflow: hidden;
+
+      .content_wrapper {
+        @include flex(flex-start, stretch);
+        padding-top: 10px;
+
+        input {
+          border: 2px solid $clr_brd;
+          width: 100%;
+          border-radius: 5px 0 0 5px;
+          border-right: none;
+          padding: 10px 15px;
+          font-size: 1.5rem;
+        }
+
+        .search_btn {
+          background-color: $clr_acc;
+          color: $clr_txt_sub;
+          width: 50px;
+          border-radius: 0 5px 5px 0;
+          @include flex(center, center);
+          font-size: 2rem;
+
+          svg {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  // *End Dashoard navbar
+
+  // *Dashboard Main
+  .dash_main {
+    @include flex(space-between, stretch);
+    min-height: calc(100vh - 70px);
+
+    .dash_sidenav {
+      width: 18%;
+      max-width: 36px;
+      background-color: $clr_bg_sub;
+      box-shadow: 2px 0px 15px $clr_brd;
+      position: relative;
+      min-width: fit-content;
+
+      @include media(max, $xlrg) {
+        display: none;
+      }
+
+      .wrapper {
+        padding-block: 30px;
+        @include flex();
+        gap: 20px;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        overflow-y: auto;
+        height: 100vh;
+        scrollbar-width: thin;
+        scrollbar-color: $clr_brd $clr_bg_sub;
+
+        .sidenav_opt {
+          padding-inline: var(--gen_pad_inline);
+          @include flex(flex-start, center);
+          gap: 10px;
+          padding-block: 10px;
+          font-size: 1.5rem;
+          color: $clr_txt_main;
+          width: 100%;
+          opacity: 0.6;
+          transition: background-color ease $trans_short,
+            color ease $trans_short !important;
+
+          @include media(max, 1500px) {
+            font-size: 1.3rem;
+
+            .icon {
+              font-size: 1.4rem;
+            }
+          }
+
+          &:hover {
+            background-color: lighten($clr_acc, 45%);
+            opacity: 1;
+          }
+
+          .icon {
+            font-size: 1.6rem;
+            svg {
+              display: block;
+              width: 1em;
+              height: 1em;
+            }
+          }
+        }
+
+        .top {
+          @include flex();
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .bottom {
+          @include flex();
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
+
+          .sidenav_opts {
+            width: 100%;
+            h3 {
+              padding-inline: var(--gen_pad_inline);
+              text-transform: uppercase;
+              letter-spacing: 0.1rem;
+              padding-block: 10px;
+            }
+
+            .sidenav_opt_wrapper {
+              @include flex();
+              flex-direction: column;
+
+              .sidenav_opt {
+                border: 4px solid transparent;
+                transition: border ease $trans_mid;
+
+                &.active {
+                  border-left-color: $clr_acc;
+                  background-color: lighten($clr_acc, 45%);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
-    .right_side {
-      flex-basis: 40%;
-      @include flex(flex-end, center);
+    .dash_sect {
+      width: 78.8%;
+      padding-block: 50px;
+
+      svg {
+        display: block;
+        width: 1em;
+        height: 1em;
+      }
+
+      @include media(max, $xlrg) {
+        width: 100%;
+      }
+
+      .dash_users {
+        padding-right: var(--gen_pad_inline);
+
+        .dash_users_main {
+          header {
+            margin-bottom: 30px;
+
+            h1 {
+              margin-bottom: inherit;
+              font-size: 2rem;
+            }
+
+            .cards_wrapper {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 30px;
+              @include media(max, $sml) {
+                gap: 15px;
+              }
+
+              .card {
+                background-color: $clr_bg_sub;
+                border-radius: 5px;
+                box-shadow: 0 0 10px $clr_brd;
+                padding: 20px;
+                @include flex();
+                flex-direction: column;
+                gap: 10px;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+
+                .icon {
+                  font-size: 4rem;
+                }
+
+                .count {
+                  font-weight: bold;
+                  font-size: 2rem;
+                }
+              }
+            }
+          }
+
+          .bottom {
+            .table_wrapper {
+              background-color: $clr_bg_sub;
+              padding: 30px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px $clr_brd;
+              margin-bottom: 10px;
+
+              table {
+                width: 100%;
+                border-collapse: collapse;
+
+                tr {
+                  text-align: left;
+                  font-size: 1.3rem;
+
+                  &:last-of-type td {
+                    border-bottom: none;
+                  }
+
+                  th {
+                    text-transform: uppercase;
+                    padding-bottom: 15px;
+                    font-size: 1.2rem;
+                    letter-spacing: 0.1rem;
+
+                    .cell_content {
+                      @include flex(flex-start, center);
+                      gap: 5px;
+
+                      .filter {
+                        padding: 2px 5px;
+
+                        svg {
+                          position: relative;
+                          top: -1px;
+                        }
+                      }
+                    }
+                  }
+
+                  td {
+                    border-bottom: 1px solid $clr_brd;
+                    padding-block: 20px;
+
+                    &.status {
+                      text-transform: capitalize;
+
+                      &.status.inactive {
+                        @include statusClr($clr_txt_main);
+                      }
+
+                      &.status.blacklisted {
+                        @include statusClr(($clr_blacklist));
+                      }
+
+                      &.status.active {
+                        @include statusClr(($clr_active));
+                      }
+
+                      &.status.pending {
+                        @include statusClr(($clr_pending));
+                      }
+
+                      span {
+                        border-radius: 20px;
+                        padding: 5px 20px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            footer {
+              @include flex(space-between, center);
+              font-size: 1.3rem;
+
+              .left_side {
+                @include flex(flex-start, center);
+                gap: 10px;
+
+                select {
+                  border: none;
+                  outline: none;
+                  background-color: color-mix(in srgb, $clr_txt_main 20%, #fff);
+                  padding: 5px;
+                  border-radius: 5px;
+                  color: $clr_txt_main;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
+  // *End Dashboard Main
 }
