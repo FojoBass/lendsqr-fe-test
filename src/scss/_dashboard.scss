@@ -253,6 +253,13 @@
           opacity: 0.6;
           transition: background-color ease $trans_short,
             color ease $trans_short !important;
+          border: 4px solid transparent;
+
+          &.active {
+            border-left-color: $clr_acc;
+            background-color: lighten($clr_acc, 45%);
+            opacity: 1;
+          }
 
           @include media(max, 1500px) {
             font-size: 1.3rem;
@@ -277,13 +284,17 @@
           }
         }
 
+        p.sidenav_opt {
+          font-size: 1.3rem;
+        }
+
         .top {
           @include flex();
           flex-direction: column;
           gap: 20px;
         }
 
-        .bottom {
+        .mid {
           @include flex();
           flex-direction: column;
           gap: 20px;
@@ -297,23 +308,50 @@
               letter-spacing: 0.1rem;
               padding-block: 10px;
             }
-
-            .sidenav_opt_wrapper {
-              @include flex();
-              flex-direction: column;
-
-              .sidenav_opt {
-                border: 4px solid transparent;
-                transition: border ease $trans_mid;
-
-                &.active {
-                  border-left-color: $clr_acc;
-                  background-color: lighten($clr_acc, 45%);
-                  opacity: 1;
-                }
-              }
-            }
           }
+        }
+
+        .bottom {
+          padding-top: 20px;
+          border-top: 2px solid $clr_brd;
+          width: 100%;
+          margin-top: 20px;
+
+          // .opt {
+          //   padding-inline: var(--gen_pad_inline);
+          //   @include flex(flex-start, center);
+          //   gap: 10px;
+          //   padding-block: 10px;
+          //   font-size: 1.5rem;
+          //   color: $clr_txt_main;
+          //   width: 100%;
+          //   opacity: 0.6;
+          //   transition: background-color ease $trans_short,
+          //     color ease $trans_short !important;
+          //   border: 4px solid transparent;
+
+          //   @include media(max, 1500px) {
+          //     font-size: 1.3rem;
+
+          //     .icon {
+          //       font-size: 1.4rem;
+          //     }
+          //   }
+
+          //   &:hover {
+          //     background-color: lighten($clr_acc, 45%);
+          //     opacity: 1;
+          //   }
+
+          //   .icon {
+          //     font-size: 1.6rem;
+          //     svg {
+          //       display: block;
+          //       width: 1em;
+          //       height: 1em;
+          //     }
+          //   }
+          // }
         }
       }
     }
@@ -388,10 +426,7 @@
 
           .bottom {
             .table_wrapper {
-              background-color: $clr_bg_sub;
-              padding: 30px;
-              border-radius: 5px;
-              box-shadow: 0 0 10px $clr_brd;
+              @include dashBox();
               margin-bottom: 20px;
               overflow-x: auto;
               scrollbar-width: thin;
@@ -541,12 +576,16 @@
                 background-color: $clr_bg_sub;
                 border-radius: 5px;
                 box-shadow: 0 0 10px $clr_brd;
-                padding: 20px;
+                padding: 30px;
                 @include flex();
                 flex-direction: column;
                 gap: 10px;
                 font-size: 1.2rem;
                 text-transform: uppercase;
+
+                @include media(max, $xsml) {
+                  padding: 20px;
+                }
 
                 .icon {
                   font-size: 4rem;
@@ -562,10 +601,7 @@
 
           .bottom {
             .table_wrapper {
-              background-color: $clr_bg_sub;
-              padding: 30px;
-              border-radius: 5px;
-              box-shadow: 0 0 10px $clr_brd;
+              @include dashBox();
               margin-bottom: 20px;
               overflow-x: auto;
               scrollbar-width: thin;
@@ -840,6 +876,264 @@
         }
       }
       // *End Dash Users
+
+      // *Single User
+      .dash_user {
+        padding-right: var(--gen_pad_inline);
+
+        header {
+          margin-bottom: 30px;
+          @include flex(flex-start, flex-start, column);
+          gap: 20px;
+
+          .back_btn {
+            width: 100%;
+
+            @include flex();
+            gap: 10px;
+            align-items: center;
+            font-size: 1.5rem;
+          }
+
+          h1 {
+            @include flex(space-between, center);
+            width: 100%;
+            font-size: 2rem;
+
+            .btns_wrapper {
+              @include flex(center, center);
+              gap: 20px;
+
+              button {
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+                border: 2px solid transparent;
+                padding: 7px 10px;
+                border-radius: 7px;
+
+                @include media(max, $sml) {
+                  .text {
+                    display: none;
+                  }
+
+                  .icon {
+                    display: block !important;
+                  }
+                }
+
+                &.blacklist_btn {
+                  color: $clr_blacklist;
+                  border-color: $clr_blacklist;
+                }
+
+                &.activate_btn {
+                  color: $clr_acc;
+                  border-color: $clr_acc;
+                }
+
+                .icon {
+                  display: none;
+                }
+              }
+            }
+          }
+
+          .user_card {
+            @include dashBox();
+            width: 100%;
+            @include flex(flex-start, flex-start, column);
+            gap: 20px;
+            padding-bottom: 0;
+            overflow: auto;
+
+            .top {
+              @include flex(flex-start, stretch);
+              width: 100%;
+              gap: 15px;
+              position: sticky;
+              left: 0;
+
+              .avi_wrapper {
+                font-size: 8rem;
+                @include media(max, 650px) {
+                  display: none;
+                }
+              }
+
+              .top_info {
+                @include flex(flex-start, flex-start);
+                gap: 20px;
+                width: 100%;
+
+                @include media(max, $sml) {
+                  justify-content: space-between;
+                }
+
+                .seg {
+                  @include flex(center, flex-start, column);
+                  height: 100%;
+
+                  &:nth-of-type(2) {
+                    padding-inline: 30px;
+                    border-right: 1px solid $clr_brd;
+                    border-left: 1px solid $clr_brd;
+
+                    @include media(max, 650px) {
+                      padding-block: 20px;
+                    }
+
+                    @include media(max, $sml) {
+                      display: none;
+                    }
+                  }
+
+                  @include media(max, $sml) {
+                    &:last-of-type {
+                      text-align: right;
+                      justify-content: flex-start;
+                    }
+                  }
+
+                  h3 {
+                    width: 100%;
+                    font-size: 1.7rem;
+                    letter-spacing: 0.1rem;
+
+                    @include media(max, $sml) {
+                      font-size: 1.5rem;
+                    }
+                  }
+
+                  p {
+                    font-size: 1.3rem;
+                    text-transform: capitalize;
+                    margin-top: 3px;
+                  }
+
+                  h5 {
+                    font-size: 1.3rem;
+                    text-transform: capitalize;
+                    letter-spacing: 0.1rem;
+                  }
+
+                  .stars_wrapper {
+                    @include flex(flex-start, center);
+                    gap: 5px;
+                    font-size: 1.3rem;
+                    margin-top: 3px;
+
+                    &.mobile {
+                      @include media(min, $sml) {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .bottom {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(6, 1fr);
+              gap: 10px;
+              min-width: 700px;
+
+              @include media(max, $xsml) {
+                gap: 5px;
+              }
+
+              .opt {
+                color: $clr_txt_main;
+                padding-block: 10px;
+                border-bottom: 2px solid transparent;
+                font-size: 1.5rem;
+
+                @include media(max, $xsml) {
+                  padding-block: 7px;
+                  letter-spacing: unset;
+                }
+
+                @include media(max, 900px) {
+                  font-size: 1.3rem;
+                }
+
+                &.active {
+                  color: $clr_acc;
+                  border-color: $clr_acc;
+                }
+              }
+            }
+          }
+        }
+
+        .more_info {
+          @include dashBox();
+          width: 100%;
+          @include flex(flex-start, flex-start, column);
+          gap: 20px;
+
+          .info_opt {
+            width: 100%;
+
+            &:nth-of-type(2) {
+              padding-block: 20px;
+              border-top: 1px solid $clr_brd;
+              border-bottom: 1px solid $clr_brd;
+            }
+
+            &:last-of-type {
+              .opts_wrapper {
+                @include flex();
+                flex-direction: column;
+
+                .info_opt_wrapper {
+                  width: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                  gap: 20px 50px;
+                  border-bottom: 1px solid $clr_brd;
+                  padding-bottom: 20px;
+
+                  &:last-of-type {
+                    border: none;
+                    padding-bottom: 0;
+                  }
+                }
+              }
+            }
+
+            h5 {
+              font-size: 1.3rem;
+
+              &.title {
+                margin-bottom: 20px;
+                font-size: 1.4rem;
+
+                @include media(max, $sml) {
+                  margin-bottom: 10px;
+                }
+              }
+            }
+
+            .opts_wrapper {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+              gap: 20px 50px;
+
+              .opt {
+                .title {
+                  text-transform: uppercase;
+                  font-size: 1.1rem;
+                  margin-bottom: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+      // *End Single User
     }
   }
   // *End Dashboard Main

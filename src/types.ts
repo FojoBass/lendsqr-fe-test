@@ -54,7 +54,7 @@ export interface UserInfoInt {
   guarantors: {
     fullName: string;
     phoneNumber: string;
-    eamil: string;
+    email: string;
     relationship: string;
   }[];
   id: string;

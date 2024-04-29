@@ -25,6 +25,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     localStorage.setItem('lendsqr_isAuthed', JSON.stringify(isAuthed));
+    isAuthed || localStorage.removeItem('lendsqr_users');
   }, [isAuthed]);
 
   const sharedProps: AppContextInt = {

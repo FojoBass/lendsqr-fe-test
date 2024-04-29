@@ -23,6 +23,10 @@ import Users from './assets/icons/users 1.svg?react';
 import UserTimes from './assets/icons/user-times 1.svg?react';
 import Bank from './assets/icons/bank.svg?react';
 import Transaction from './assets/icons/transaction.svg?react';
+import Logout from './assets/icons/sign-out 1.svg?react';
+import Avi from './assets/icons/avatar.svg?react';
+import Star from './assets/icons/star.svg?react';
+import StarFilled from './assets/icons/star_filled.svg?react';
 
 export {
   Percent,
@@ -50,4 +54,8 @@ export {
   UserTimes,
   Bank,
   Transaction,
+  Logout,
+  Avi,
+  Star,
+  StarFilled,
 };

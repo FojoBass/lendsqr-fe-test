@@ -53,6 +53,17 @@ $xlrg: 1200px;
   flex-direction: $dir;
 }
 
+@mixin dashBox() {
+  background-color: $clr_bg_sub;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px $clr_brd;
+
+  @include media(max, $xsml) {
+    padding: 20px;
+  }
+}
+
 :root {
   --gen_pad_inline: 20px;
   @include media(min, $xlrg) {
