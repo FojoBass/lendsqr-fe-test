@@ -18,13 +18,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isAuthed, setIsAuthed] = useState(
-    sessionStorage.getItem('lendsqr_isAuthed')
-      ? JSON.parse(sessionStorage.getItem('lendsqr_isAuthed')!)
+    localStorage.getItem('lendsqr_isAuthed')
+      ? JSON.parse(localStorage.getItem('lendsqr_isAuthed')!)
       : false
   );
 
   useEffect(() => {
-    sessionStorage.setItem('lendsqr_isAuthed', JSON.stringify(isAuthed));
+    localStorage.setItem('lendsqr_isAuthed', JSON.stringify(isAuthed));
   }, [isAuthed]);
 
   const sharedProps: AppContextInt = {

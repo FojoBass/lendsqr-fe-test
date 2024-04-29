@@ -45,11 +45,16 @@ a {
 }
 
 input,
-textarea {
+textarea,
+select {
   border: none;
   outline: none;
   background-color: transparent;
   color: inherit;
+}
+
+select {
+  cursor: pointer;
 }
 
 img {
@@ -83,8 +88,36 @@ img {
   }
 }
 
+.skeleton_anim {
+  background-color: $clr_brd;
+  animation: skeletonAnim 1s linear infinite;
+}
+
+.skeleton_anim2 {
+  background-color: $clr_bg_sub;
+  animation: skeletonAnim2 1s linear infinite;
+}
+
 @keyframes spinner {
   100% {
     rotate: 360deg;
+  }
+}
+
+@keyframes skeletonAnim {
+  50% {
+    background-color: $clr_bg_main;
+  }
+  100% {
+    background-color: $clr_brd;
+  }
+}
+
+@keyframes skeletonAnim2 {
+  50% {
+    background-color: $clr_bg_main;
+  }
+  100% {
+    background-color: $clr_bg_sub;
   }
 }

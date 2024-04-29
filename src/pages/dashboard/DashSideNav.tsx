@@ -1,10 +1,13 @@
 import { Briefcase, Home } from '../../icons';
 import { dashSideNavOpts } from '../../data';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useDashBoardContext } from '../../contexts/dashboardContext';
 
 const DashSideNav = () => {
+  const { isSideNav } = useDashBoardContext();
+
   return (
-    <aside className='dash_sidenav'>
+    <aside className={`dash_sidenav ${isSideNav ? 'active' : ''}`}>
       <div className='wrapper'>
         <div className='top'>
           <button className='sidenav_opt'>

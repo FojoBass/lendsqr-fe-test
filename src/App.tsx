@@ -8,6 +8,7 @@ import {
 import Login from './pages/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import Users from './pages/dashboard/Users';
+import SingleUser from './pages/dashboard/SingleUser';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -16,6 +17,7 @@ const App = () => {
         <Route index element={<Login />} />
         <Route path='/dashboard' element={<Dashboard />}>
           <Route index element={<Users />} />
+          <Route path=':id' element={<SingleUser />} />
         </Route>
       </Route>
     )
