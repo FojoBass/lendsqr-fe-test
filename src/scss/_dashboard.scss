@@ -881,6 +881,27 @@
       .dash_user {
         padding-right: var(--gen_pad_inline);
 
+        .empty_user {
+          width: 100%;
+          @include flex(center, center, column);
+          background-color: $clr_bg_sub;
+          padding: 30px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px $clr_brd;
+          gap: 10px;
+          font-size: 1.5rem;
+          text-transform: uppercase;
+          font-weight: bold;
+
+          a {
+            color: $clr_txt_sub;
+            padding: 10px 30px;
+            border-radius: 10px;
+            letter-spacing: 0.1rem;
+            background-color: $clr_acc;
+          }
+        }
+
         header {
           margin-bottom: 30px;
           @include flex(flex-start, flex-start, column);

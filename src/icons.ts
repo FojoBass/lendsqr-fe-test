@@ -27,6 +27,7 @@ import Logout from './assets/icons/sign-out 1.svg?react';
 import Avi from './assets/icons/avatar.svg?react';
 import Star from './assets/icons/star.svg?react';
 import StarFilled from './assets/icons/star_filled.svg?react';
+import LogoHalf from './assets/icons/logo_half.svg?react';
 
 export {
   Percent,
@@ -58,4 +59,5 @@ export {
   Avi,
   Star,
   StarFilled,
+  LogoHalf,
 };

@@ -139,7 +139,6 @@ const Users = () => {
               );
             break;
           default:
-            console.log('Not suppose to be in here. Debug!');
             return;
         }
       }
@@ -183,7 +182,6 @@ const Users = () => {
           localStorage.setItem('lendsqr_users', JSON.stringify(data));
           setFetchUsers(data);
         } catch (err) {
-          console.log(err);
           setFetchErr('Check network connection');
         } finally {
           setIsLoading(false);
@@ -583,7 +581,6 @@ const Filter = ({
           if (value) setStatus(value);
           break;
         default:
-          console.log('Not suppose to be in here. Debug!');
           return;
       }
     }

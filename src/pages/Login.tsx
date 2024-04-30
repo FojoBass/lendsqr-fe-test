@@ -151,7 +151,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button onClick={() => setIsVisible(!isVisble)}>
+              <button onClick={() => setIsVisible(!isVisble)} type='button'>
                 {isVisble ? 'hide' : 'show'}
               </button>
               <div

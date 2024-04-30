@@ -1,4 +1,41 @@
-@use 'config';
+@use 'config' as *;
 @use 'default';
 @use 'login';
 @use 'dashboard';
+
+.err_sect {
+  height: 100vh;
+  @include flex(center, center, column);
+
+  svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+  }
+
+  .logo {
+    @include flex(flex-start, center);
+    font-size: 10rem;
+    font-weight: bolder;
+    gap: 1.5rem;
+
+    .icon {
+      font-size: 7rem;
+      rotate: 180deg;
+    }
+  }
+
+  .text {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  button {
+    color: $clr_bg_sub;
+    font-size: 1.5rem;
+    background-color: $clr_acc;
+    padding: 15px 30px;
+    border-radius: 10px;
+    letter-spacing: 0.1rem;
+  }
+}
