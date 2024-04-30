@@ -2,7 +2,6 @@
 
 #login {
   height: 100vh;
-  background-color: red;
 
   @include media(min, $mid) {
     @include flex(flex-start, flex-start);
@@ -83,6 +82,10 @@
             border-radius: 5px;
             font-size: 1.5rem;
             letter-spacing: 0.1rem;
+
+            @include media(max, $xsml) {
+              border-width: 1px;
+            }
           }
 
           .err_msg {

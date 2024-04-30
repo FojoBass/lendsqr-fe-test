@@ -20,6 +20,7 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
+import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
 
 const Users = () => {
   const [fetchUsers, setFetchUsers] = useState<UserInfoInt[]>([]);
@@ -232,6 +233,11 @@ const Users = () => {
           <div className='bottom'>
             {filterUsers.length ? (
               <>
+                <div className='scroll_wrapper'>
+                  <FaArrowLeftLong />
+                  scroll
+                  <FaArrowRightLong />
+                </div>
                 <div className='table_wrapper' ref={tableWrapperRef}>
                   <Filter
                     fetchUsers={fetchUsers}
@@ -239,6 +245,7 @@ const Users = () => {
                     left={filterLeft}
                     closer={setIsFilter}
                   />
+
                   <table>
                     <thead>
                       <tr>
